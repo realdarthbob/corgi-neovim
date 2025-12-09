@@ -6,48 +6,120 @@ vim.g.maplocalleader = " "
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Basic
+-- If not set elsewhere, you probably want this for proper Cmd+C / Cmd+V
+vim.opt.clipboard = "unnamedplus"
+
+-- --------------------------------------------------
+-- BASIC
+-- --------------------------------------------------
 map("n", "<leader>w", ":w<CR>", opts)
 map("n", "<leader>q", ":q<CR>", opts)
 map("n", "<leader>h", ":nohlsearch<CR>", opts)
 
--- Window navigation (optional)
+-- --------------------------------------------------
+-- WINDOW NAVIGATION
+-- --------------------------------------------------
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
--- Option + Arrow
-map("i", "<M-b>", "<C-o>b", opts)
-map("i", "<M-f>", "<C-o>w", opts)
-map("n", "<M-b>", "b", opts)
-map("n", "<M-f>", "w", opts)
+-- --------------------------------------------------
+-- OPTION + ARROW  (word jump)
+-- --------------------------------------------------
+-- move by word
+map({ "n", "v" }, "<A-Left>", "b", opts)
+-- map({ "n", "v" }, "<A-S-Left>", "viw", opts)
+map({ "n", "v" }, "<A-Right>", "w", opts)
+-- map({ "n", "v" }, "<A-S-Right>", "e", opts)
+map("i", "<A-Left>", "<C-o>b", opts)
+map("i", "<A-Right>", "<C-o>w", opts)
 
---  Command + Arrow
-map("n", "<Home>", "0", opts)
-map("n", "<End>", "$", opts)
-map("n", "<leader><Up>", "gg", opts)
-map("n", "<leader><Down>", "G", opts)
 
--- Selections
-vim.keymap.set("x", "<M-S-Left>", "b", opts)
-vim.keymap.set("x", "<M-S-Right>", "w", opts)
-vim.keymap.set("n", "<M-S-Left>", "vb", opts)
-vim.keymap.set("n", "<M-S-Right>", "vw", opts)
+-- --------------------------------------------------
+-- CMD + ARROW  (line jump / selection)
+-- --------------------------------------------------
+-- CMD+Left / CMD+Right:
+--  - in NORMAL: select from cursor to start/end of line
+--  - in VISUAL: move cursor to start/end while keeping selection
+--  - in INSERT: same as normal (jump into visual selection)
+map({ "n", "v" }, "<D-Left>", "^", opts)
+map({ "n", "v" }, "<D-S-Left>", "v^", opts)
+map("i", "<D-Left>", "<C-o>^", opts)
 
--- Copy / Paste
-vim.keymap.set({ "n", "v" }, "<leader>c", '"+y', { noremap = true, silent = true })
+map({ "n", "v" }, "<D-Right>", "$", opts)
+map({ "n", "v" }, "<D-S-Right>", "v$", opts)
+map("i", "<D-Right>", "<C-o>$", opts)
 
-vim.keymap.set("n", "<leader>v", '"+p', { noremap = true, silent = true })
-vim.keymap.set("v", "<leader>v", '"+p', { noremap = true, silent = true })
-vim.keymap.set("i", "<leader>v", '<C-r>+', { noremap = true, silent = true })
+-- -- CMD+Up / CMD+Down → top / bottom of file (no selection)
+map({ "n", "v", "i" }, "<D-Up>", "gg", opts)
+map({ "n", "v", "i" }, "<D-Down>", "G", opts)
 
--- Undo / Redo
-vim.keymap.set("n", "<Esc>u", "u", { noremap = true, silent = true })
-vim.keymap.set("v", "<Esc>u", "u", { noremap = true, silent = true })
-vim.keymap.set("i", "<Esc>u", "<C-o>u", { noremap = true, silent = true })
+-- --------------------------------------------------
+-- SELECTIONS
+-- --------------------------------------------------
+-- CMD+W → expand line selection
+--   normal: select current line
+--   visual: add one more line downward each time
+map("n", "<D-w>", "V", opts)
+map("x", "<D-w>", "j", opts)
 
-vim.keymap.set("n", "<Esc>r", "<C-r>", { noremap = true, silent = true })
-vim.keymap.set("v", "<Esc>r", "<C-r>", { noremap = true, silent = true })
-vim.keymap.set("i", "<Esc>r", "<C-o><C-r>", { noremap = true, silent = true })
+-- OPT+W → word selection grow
+--   normal: select current word
+--   visual: extend selection one word to the right
+map("n", "<A-w>", "viw", opts)
+map("v", "<A-w>", "e", opts)
 
+-- CMD+A → select whole buffer
+map({ "n", "v" }, "<D-a>", "ggVG", opts)
+
+-- --------------------------------------------------
+-- COPY / PASTE (system clipboard)
+-- --------------------------------------------------
+-- COPY:
+--   normal: copy current line
+--   visual: copy selection
+map("n", "<D-c>", '"+yy', opts)
+map("x", "<D-c>", '"+y', opts)
+
+-- PASTE:
+map("n", "<D-v>", '"+p', opts)
+map("x", "<D-v>", '"+p', opts)
+map("i", "<D-v>", '<C-r>+', opts)
+map("c", "<D-v>", '<C-r>+', opts)
+
+-- --------------------------------------------------
+-- UNDO / REDO
+-- --------------------------------------------------
+map({ "n", "v" }, "<D-z>", "u", opts)
+map("i", "<D-z>", "<C-o>u", opts)
+
+map({ "n", "v" }, "<D-Z>", "<C-r>", opts)
+map("i", "<D-Z>", "<C-o><C-r>", opts)
+
+-- --------------------------------------------------
+-- CMD+DEL  (delete whole line)
+-- --------------------------------------------------
+-- On macOS “Delete” is Backspace; forward delete is <Del>.
+-- We map both Cmd+Backspace and Cmd+Delete to "delete line".
+map("n", "<D-BS>", "dd", opts)
+map("i", "<D-BS>", "<Esc>dd", opts)
+map("x", "<D-BS>", "d", opts)
+
+map("n", "<D-Del>", "dd", opts)
+map("i", "<D-Del>", "<Esc>dd", opts)
+map("x", "<D-Del>", "d", opts)
+
+-- --------------------------------------------------
+-- CMD+D  (duplicate line / selection)
+-- --------------------------------------------------
+-- Normal: duplicate current line
+map("n", "<D-d>", "yyp", opts)
+
+-- Visual: duplicate selection just below
+map("x", "<D-d>", "y'>p", opts)
+
+-- --------------------------------------------------
+-- CMD+SHIFT+T  (toggle terminal)
+-- --------------------------------------------------
+map({ "n", "t" }, "<D-T>", "<cmd>ToggleTerm<CR>", opts)

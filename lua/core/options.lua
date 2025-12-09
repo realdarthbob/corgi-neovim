@@ -32,3 +32,11 @@ opt.smartcase = true
 
 -- Clipboard
 opt.clipboard = "unnamedplus"
+
+-- Neovide Options
+vim.g.neovide_cursor_animation_length = 0
+vim.g.neovide_cursor_trail_size = 0
+vim.g.neovide_cursor_animate_in_insert_mode = false
+vim.g.neovide_cursor_animate_command_line = false
+vim.g.neovide_input_use_logo = true
+vim.g.neovide_scroll_animation_length = 0

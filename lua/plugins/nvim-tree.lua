@@ -6,12 +6,17 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   keys = {
-    { "<leader>1", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer (Cmd+1)" },
-    { "<leader>n", function()
+    { "<D-1>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer (Cmd+1)" },
+    { "<D-n>", function()
         require("nvim-tree.api").tree.open()
         require("nvim-tree.api").fs.create()
       end,
       desc = "Create file in NvimTree",
+    },
+    { "<D-R>", function()
+        require("nvim-tree.api").fs.rename()
+      end,
+      desc = "Rename file in NvimTree",
     },
   },
   config = function()
