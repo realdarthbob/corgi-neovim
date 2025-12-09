@@ -1,11 +1,9 @@
--- Plugin for visualizing tree
-
 return {
   "nvim-tree/nvim-tree.lua",
   lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  -- cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
   keys = {
+    -- Existing Mappings
     { "<D-1>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer (Cmd+1)" },
     { "<D-n>", function()
         require("nvim-tree.api").tree.open()
@@ -18,8 +16,28 @@ return {
       end,
       desc = "Rename file in NvimTree",
     },
+
   },
+  
   config = function()
+    local tree_api = require("nvim-tree.api")
+    
+    local function on_attach(bufnr)
+      local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+      end
+
+      tree_api.config.mappings.default_on_attach(bufnr)
+
+      vim.keymap.set("n", "<D-c>", tree_api.fs.copy.node, opts("Copy File/Folder"))
+      vim.keymap.set("n", "<D-x>", tree_api.fs.cut, opts("Cut File/Folder"))
+      vim.keymap.set("n", "<D-v>", tree_api.fs.paste, opts("Paste File/Folder"))
+      
+      vim.keymap.set("n", "<BS>", tree_api.fs.remove, opts("Delete File/Folder"))
+      
+      vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
+    end
+    
     require("nvim-tree").setup({
       view = {
         width = 30,
@@ -41,12 +59,13 @@ return {
       git = {
         enable = true,
       },
+      on_attach = on_attach,
     })
 
     vim.api.nvim_create_autocmd("VimEnter", {
       callback = function()
         if vim.fn.argc() == 0 then
-          require("nvim-tree.api").tree.open()
+          tree_api.tree.open()
         end
       end,
     })
@@ -59,7 +78,6 @@ return {
         end
       end,
     })
-   
+    
   end,
 }
- 

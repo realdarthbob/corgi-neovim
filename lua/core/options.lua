@@ -3,6 +3,10 @@
 local opt = vim.opt
 local g = vim.g
 
+if g.neovide then
+  vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+end
+
 opt.keymodel = "startsel,stopsel"
 opt.selectmode = "key"
 

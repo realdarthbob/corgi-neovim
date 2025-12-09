@@ -1,4 +1,5 @@
 require("core.options")
-require("core.keymaps")
+require("core.idea-keymaps")
+require("core.lsp")
 require("core.lazy")
 
