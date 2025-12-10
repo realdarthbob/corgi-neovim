@@ -44,3 +44,24 @@ vim.g.neovide_cursor_animate_in_insert_mode = false
 vim.g.neovide_cursor_animate_command_line = false
 vim.g.neovide_input_use_logo = true
 vim.g.neovide_scroll_animation_length = 0
+
+-- Diagnostics
+
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 500
+
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = true,
+  float = {
+    source = true,
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+  },
+})
+
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })

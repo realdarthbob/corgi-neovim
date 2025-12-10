@@ -1,3 +1,5 @@
+-- Plugin for showing tree structure
+
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -33,6 +35,11 @@ return {
       vim.keymap.set("n", "<BS>", tree_api.fs.remove, opts("Delete File/Folder"))
       
       vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
+      vim.keymap.set("n", "s", function() 
+          tree_api.node.open.vertical()
+        end, 
+        opts("Open vertical")
+      )
     end
     
     require("nvim-tree").setup({

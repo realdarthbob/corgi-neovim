@@ -11,6 +11,7 @@ return {
       "vim",
       "vimdoc",
       "rust",
+      "javascript",
       "java",
       "json",
       "toml",
