@@ -12,8 +12,6 @@ vim.opt.clipboard = "unnamedplus"
 map("n", "<leader>d", "yyp", { desc = "Duplicate line" })
 map({ "v", "s" }, "<leader>d", "yP", { desc = "Duplicate selection" })
 
--- Save Files
-map({ "n", "v", "s" }, "<leader>s", "<cmd>w<CR>", { desc = "Save file" })
 map({ "n", "v", "s" }, "<leader>a", "<Esc>ggVG", { desc = "Select All" })
 
 -- Repeat recording on selected lines
@@ -34,29 +32,29 @@ map("n", "J", "mzJ`z")
 -- Window Navigation (move between splits)
 ---------------------------------------------------------------------
 
-map("n", "<C-h>", "<C-w>h")   -- Move to left window
-map("n", "<C-j>", "<C-w>j")   -- Move to window below
-map("n", "<C-k>", "<C-w>k")   -- Move to window above
-map("n", "<C-l>", "<C-w>l")   -- Move to right window
+map("n", "<C-h>", "<C-w>h") -- Move to left window
+map("n", "<C-j>", "<C-w>j") -- Move to window below
+map("n", "<C-k>", "<C-w>k") -- Move to window above
+map("n", "<C-l>", "<C-w>l") -- Move to right window
 
 ---------------------------------------------------------------------
 -- Window Resizing
 ---------------------------------------------------------------------
 
-map("n", "<C-Up>", ":resize +2<CR>")            -- Increase height
-map("n", "<C-Down>", ":resize -2<CR>")          -- Decrease height
-map("n", "<C-Left>", ":vertical resize -2<CR>") -- Make window narrower
-map("n", "<C-Right>", ":vertical resize +2<CR>")-- Make window wider
+map("n", "<C-Up>", ":resize +2<CR>")             -- Increase height
+map("n", "<C-Down>", ":resize -2<CR>")           -- Decrease height
+map("n", "<C-Left>", ":vertical resize -2<CR>")  -- Make window narrower
+map("n", "<C-Right>", ":vertical resize +2<CR>") -- Make window wider
 
 ---------------------------------------------------------------------
 -- Buffer Navigation (switch between open files)
 ---------------------------------------------------------------------
 
-map("n", "<S-l>", ":bnext<CR>")     -- Next buffer
-map("n", "<S-h>", ":bprevious<CR>") -- Previous buffer
+map("n", "<S-l>", ":bnext<CR>")        -- Next buffer
+map("n", "<S-h>", ":bprevious<CR>")    -- Previous buffer
 map("n", "<leader>bd", ":bdelete<CR>") -- Close current buffer
 map("n", "<leader>q", "<cmd>q<CR>")
-map("n", "<leader>w", "<cmd>wq<CR>")
+map("n", "<leader>w", "<cmd>w<CR>")
 ---------------------------------------------------------------------
 -- Indentation Improvements
 ---------------------------------------------------------------------
@@ -84,13 +82,13 @@ map("v", "p", '"_dP') -- Paste without overwriting the default register
 -- Diagnostics Navigation (built-in LSP)
 ---------------------------------------------------------------------
 
-map("n", "]d", vim.diagnostic.goto_next)     -- Go to next diagnostic
-map("n", "[d", vim.diagnostic.goto_prev)     -- Go to previous diagnostic
+map("n", "]d", vim.diagnostic.goto_next)         -- Go to next diagnostic
+map("n", "[d", vim.diagnostic.goto_prev)         -- Go to previous diagnostic
 map("n", "<leader>e", vim.diagnostic.open_float) -- Show diagnostic popup
 
 
 ---------------------------------------------------------------------
--- Terminal 
+-- Terminal
 -----------------------------------------------------------------------
 -- map("n", "<leader>t", function() vim.cmd("belowright 15split | terminal") end, { desc = "Open Terminal"})
 ---------------------------------------------------------------------

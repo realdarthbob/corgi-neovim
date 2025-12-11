@@ -62,7 +62,6 @@ return {
 
         map("n", "K", vim.lsp.buf.hover, "Hover")
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-        map("n", "<C-CR>", vim.lsp.buf.code_action, "Code Actions")
         map("n", "gl", function()
           vim.diagnostic.open_float(nil, {
             focusable = false,

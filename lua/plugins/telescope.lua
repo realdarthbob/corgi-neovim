@@ -9,46 +9,47 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
     },
+    'nvim-telescope/telescope-ui-select.nvim'
   },
   cmd = "Telescope",
 
   defaults = {
     file_ignore_patterns = {
-        "Library/Mobile% Documents",
-        "Library/CloudStorage",
-        "Dropbox",
-        "%.icloud",
+      "Library/Mobile% Documents",
+      "Library/CloudStorage",
+      "Dropbox",
+      "%.icloud",
 
-        -- Apple Music
-        "Music/iTunes",
-        "Music/Music/Media",
-        "%.m4p", "%.m4a", "%.aac", "%.mp3",
+      -- Apple Music
+      "Music/iTunes",
+      "Music/Music/Media",
+      "%.m4p", "%.m4a", "%.aac", "%.mp3",
 
-        -- Photos
-        "%.photoslibrary",
-        "Pictures/Photos%.library",
+      -- Photos
+      "%.photoslibrary",
+      "Pictures/Photos%.library",
 
-        -- Messages
-        "Library/Messages",
+      -- Messages
+      "Library/Messages",
 
-        -- Mail
-        "Library/Mail",
+      -- Mail
+      "Library/Mail",
 
-        -- Notes
-        "group%.com%.apple%.notes",
+      -- Notes
+      "group%.com%.apple%.notes",
 
-        -- Safari / browser
-        "Library/Safari",
-        "Library/Caches/Safari",
+      -- Safari / browser
+      "Library/Safari",
+      "Library/Caches/Safari",
 
-        -- Xcode
-        "Library/Developer",
-        "Containers/com%.apple%.dt%.Xcode",
+      -- Xcode
+      "Library/Developer",
+      "Containers/com%.apple%.dt%.Xcode",
 
-        -- General caches
-        "Library/Caches",
-        "Library/Logs",
-      },
+      -- General caches
+      "Library/Caches",
+      "Library/Logs",
+    },
   },
 
   keys = {
@@ -134,6 +135,13 @@ return {
       desc = "LSP type definitions",
     },
     {
+      "ga",
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      desc = "Code Action",
+    },
+    {
       "<leader>ss",
       function()
         require("telescope.builtin").lsp_workspace_symbols()
@@ -215,9 +223,14 @@ return {
           override_file_sorter = true,
           case_mode = "smart_case",
         },
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown {
+          }
+        }
       },
     })
 
     telescope.load_extension("fzf")
+    telescope.load_extension("ui-select")
   end,
 }
