@@ -10,11 +10,5 @@ return {
       size = 15,
       shade_terminals = true,
     })
-
-    vim.keymap.set({ "n" }, "<leader>t", "<cmd>ToggleTerm<CR>", {
-      noremap = true,
-      silent = true,
-      desc = "Toggle terminal",
-    })
   end,
 }

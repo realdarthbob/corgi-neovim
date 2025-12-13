@@ -29,7 +29,7 @@ return {
     indent = {
       enable = true,
     },
-    textObjects = {
+    textobjects = {
       select = {
         enable = true,
         lookahead = true,

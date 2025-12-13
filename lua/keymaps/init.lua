@@ -80,6 +80,11 @@ map("v", "p", '"_dP') -- Paste without overwriting the default register
 -- Terminal
 -----------------------------------------------------------------------
 -- map("n", "<leader>t", function() vim.cmd("belowright 15split | terminal") end, { desc = "Open Terminal"})
+map("n", "<leader>t", "<cmd>ToggleTerm<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Toggle terminal",
+})
 ---------------------------------------------------------------------
 -- Terminal Mode Escape (important for using built-in terminal)
 ---------------------------------------------------------------------

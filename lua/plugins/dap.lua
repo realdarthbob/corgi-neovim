@@ -7,6 +7,7 @@ return {
     "williamboman/mason.nvim",
     "jay-babu/mason-nvim-dap.nvim",
   },
+  keys = require("keymaps.dap").keys,
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
@@ -15,7 +16,7 @@ return {
       dapui.open()
     end
 
-    require("dapui").setup({
+    dapui.setup({
       layouts = {
         {
           elements = {
@@ -25,11 +26,11 @@ return {
           position = "bottom",
         },
       },
-
       controls = {
         enabled = false,
       },
     })
+
     require("mason-nvim-dap").setup({
       ensure_installed = { "codelldb" },
       handlers = {
@@ -55,30 +56,12 @@ return {
         request = "launch",
         program = function()
           vim.fn.system({ "cargo", "build" })
-
-          return vim.fn.input(
-            "Executable: ",
-            vim.fn.getcwd() .. "/target/debug/",
-            "file"
-          )
+          return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         env = { RUST_BACKTRACE = "full" },
       },
     }
-
-    local map = vim.keymap.set
-    map("n", "<F5>", dap.continue, { desc = "DAP continue" })
-    map("n", "<leader>so", dap.step_over, { desc = "DAP step over" })
-    map("n", "<leader>si", dap.step_into, { desc = "DAP step into" })
-    map("n", "<leader>sO", dap.step_out, { desc = "DAP step out" })
-    map("n", "<leader>db", dap.toggle_breakpoint, { desc = "DAP breakpoint" })
-    map("n", "<leader>dB", function()
-      dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-    end, { desc = "DAP conditional breakpoint" })
-    map("n", "<leader>dr", dap.repl.open, { desc = "DAP repl" })
-    map("n", "<leader>dl", dap.run_last, { desc = "DAP run last" })
-    map("n", "<leader>dx", dap.terminate, { desc = "DAP terminate" })
   end,
 }
