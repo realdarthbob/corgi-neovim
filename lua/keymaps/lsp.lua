@@ -6,8 +6,6 @@ function M.on_attach(client, bufnr)
   end
 
   map("n", "K", vim.lsp.buf.hover, "Hover")
-  map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-
   map("n", "gl", function()
     vim.diagnostic.open_float(nil, {
       focusable = false,

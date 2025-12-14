@@ -67,4 +67,14 @@ return {
   },
 
   dockerls = {},
+
+  taplo = {
+    settings = {
+      taplo = {
+        format = {
+          enable = true,
+        },
+      },
+    },
+  }
 }

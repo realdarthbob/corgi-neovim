@@ -124,6 +124,11 @@ M.keys = {
     end,
     desc = "Code Action",
   },
+  {
+    "rn",
+    vim.lsp.buf.rename,
+    desc = "Rename"
+  }
 }
 
 return M
