@@ -11,7 +11,7 @@ M.on_attach = function(client, bufnr)
       focusable = false,
       scope = "cursor",
       border = "rounded",
-      source = "if_many",
+      source = "always",
     })
   end, "Line Diagnostics")
 

@@ -22,6 +22,12 @@ return {
           enable = true,
         },
       },
+      diagnostics = {
+        enable = true,
+        experimental = {
+          enable = true,
+        },
+      },
     },
   },
 

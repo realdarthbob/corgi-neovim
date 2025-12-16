@@ -20,7 +20,7 @@ return {
       float = {
         border = "rounded",
         focusable = false,
-        source = "if_many",
+        source = "always",
       },
     })
 
@@ -39,7 +39,7 @@ return {
         vim.diagnostic.open_float(nil, {
           focusable = false,
           border = "rounded",
-          source = "if_many",
+          source = "always",
           scope = "cursor",
           close_events = {
             "CursorMoved",

@@ -23,28 +23,28 @@ M.keys = {
     desc = "Live grep",
   },
   {
-    "<leader>fb",
+    "<leader>bb",
     function()
       require("telescope.builtin").buffers()
     end,
     desc = "Buffers",
   },
   {
-    "<leader>f",
+    "<leader>bf",
     function()
       require("telescope.builtin").current_buffer_fuzzy_find()
     end,
     desc = "Search in current file",
   },
   {
-    "<leader>fh",
+    "<leader>hf",
     function()
       require("telescope.builtin").help_tags()
     end,
     desc = "Help tags",
   },
   {
-    "<leader>FF",
+    "<leader>AF",
     function()
       require("telescope.builtin").find_files({
         cwd = vim.loop.os_homedir(),
@@ -55,35 +55,35 @@ M.keys = {
     desc = "Global file search",
   },
   {
-    "gd",
+    "grd",
     function()
       require("telescope.builtin").lsp_definitions()
     end,
     desc = "LSP definitions",
   },
   {
-    "gr",
+    "grr",
     function()
       require("telescope.builtin").lsp_references()
     end,
     desc = "LSP references",
   },
   {
-    "gi",
+    "gri",
     function()
       require("telescope.builtin").lsp_implementations()
     end,
     desc = "LSP implementations",
   },
   {
-    "gt",
+    "grw",
     function()
       require("telescope.builtin").lsp_type_definitions()
     end,
     desc = "LSP type definitions",
   },
   {
-    "<leader>ss",
+    "grs",
     function()
       require("telescope.builtin").lsp_workspace_symbols()
     end,
