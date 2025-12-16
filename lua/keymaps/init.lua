@@ -8,6 +8,35 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.clipboard = "unnamedplus"
 
+function smart_vertical(move)
+  return function()
+    local count = vim.v.count > 0 and vim.v.count or 1
+
+    vim.cmd(("normal! %d%s"):format(count, move))
+
+    local col = vim.fn.col(".")
+    local line = vim.fn.getline(".")
+
+    if line == "" then
+      return
+    end
+
+    local first_non_blank = vim.fn.match(line, "\\S") + 1
+    local last_non_blank = vim.fn.match(line, "\\s*$")
+
+    if col < first_non_blank then
+      vim.cmd("normal! ^")
+      return
+    end
+
+    -- cursor past last character → jump left
+    if col > last_non_blank then
+      vim.cmd("normal! g_")
+      return
+    end
+  end
+end
+
 -- Duplicate Line (Cmd + D)
 map("n", "<leader>d", "yyp", { desc = "Duplicate line" })
 map({ "v", "s" }, "<leader>d", "yP", { desc = "Duplicate selection" })
@@ -53,22 +82,9 @@ map("n", "<S-h>", ":bprevious<CR>")    -- Previous buffer
 map("n", "<leader>bd", ":bdelete<CR>") -- Close current buffer
 map("n", "<leader>q", "<cmd>q<CR>")
 map("n", "<leader>w", "<cmd>w<CR>")
-map("n", "j", function()
-  if vim.v.count == 0 then
-    vim.cmd("normal! j^")
-  else
-    vim.cmd("normal! " .. vim.v.count .. "j^")
-  end
-end)
 
-map("n", "k", function()
-  if vim.v.count == 0 then
-    vim.cmd("normal! k^")
-  else
-    vim.cmd("normal! " .. vim.v.count .. "k^")
-  end
-end)
-
+map("n", "j", smart_vertical("j"), { noremap = true, silent = true })
+map("n", "k", smart_vertical("k"), { noremap = true, silent = true })
 ---------------------------------------------------------------------
 -- Indentation Improvements
 ---------------------------------------------------------------------

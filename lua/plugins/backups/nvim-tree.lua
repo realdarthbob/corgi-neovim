@@ -5,7 +5,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
 
   keys = {
-    { "<leader>1", "<cmd>NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
+    -- { "<leader>1", "<cmd>NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
   },
 
   config = function()
