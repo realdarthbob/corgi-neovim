@@ -50,12 +50,14 @@ g.neovide_scroll_animation_length = 0
 opt.updatetime = 400
 
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
+  signs = true,
   underline = true,
+  update_on_insert = true,
+  severity_sort = true,
   float = {
     source = true,
     focusable = false,
-    style = "minimal",
     border = "rounded",
   },
 })

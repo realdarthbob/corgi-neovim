@@ -11,19 +11,6 @@ return {
     local core = require("plugins.lsp.core")
     local servers = require("plugins.lsp.servers")
 
-    vim.diagnostic.config({
-      virtual_text = false,
-      signs = true,
-      underline = true,
-      update_in_insert = false,
-      severity_sort = true,
-      float = {
-        border = "rounded",
-        focusable = false,
-        source = "always",
-      },
-    })
-
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
       callback = function()
         if vim.bo.buftype ~= "" or vim.bo.filetype == "NvimTree" then
