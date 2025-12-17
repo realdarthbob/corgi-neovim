@@ -31,6 +31,13 @@ return {
     },
   },
 
+  jdtls = {
+    settings = {
+      java = {
+      },
+    },
+  },
+
   lua_ls = {
     settings = {
       Lua = {

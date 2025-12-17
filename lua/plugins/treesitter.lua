@@ -33,6 +33,7 @@ return {
     },
 
     textobjects = {
+      lsp_interop = { enable = true },
       select = {
         enable = true,
         lookahead = true,

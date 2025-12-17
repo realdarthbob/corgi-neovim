@@ -7,15 +7,19 @@ M.select = {
   ["ic"] = "@class.inner",
   ["aa"] = "@parameter.outer",
   ["ia"] = "@parameter.inner",
+  ["ab"] = "@block.outer",
+  ["ib"] = "@block.inner",
 }
 
 M.move_next_start = {
   ["]m"] = "@function.outer",
+  ["]a"] = "@parameter.outer",
   ["]c"] = "@class.outer",
 }
 
 M.move_prev_start = {
   ["[m"] = "@function.outer",
+  ["[a"] = "@parameter.outer",
   ["[c"] = "@class.outer",
 }
 

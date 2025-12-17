@@ -7,8 +7,8 @@ brew install neovide
 
 cp . ~/.config/nvim
 
-alias nvim="neovide"
-
+alias vim = "nvim"
+ 
 echo "Successfully setup Neovim with Neovide"
 
 exit 0
