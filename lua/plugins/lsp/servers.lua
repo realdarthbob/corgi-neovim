@@ -31,12 +31,12 @@ return {
     },
   },
 
-  jdtls = {
-    settings = {
-      java = {
-      },
-    },
-  },
+  -- jdtls = {
+  --   settings = {
+  --     java = {
+  --     },
+  --   },
+  -- },
 
   lua_ls = {
     settings = {

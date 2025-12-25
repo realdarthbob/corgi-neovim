@@ -1,10 +1,19 @@
 return {
-  "mason-org/mason-lspconfig.nvim",
+  'williamboman/mason-lspconfig.nvim',
   dependencies = {
     "mason-org/mason.nvim",
     "neovim/nvim-lspconfig",
     "b0o/SchemaStore.nvim",
     "hrsh7th/cmp-nvim-lsp",
+    "mfussenegger/nvim-jdtls",
+  },
+  opts = {
+    automatic_enable = {
+      exclude = {
+        --needs external plugin
+        'jdtls'
+      }
+    }
   },
   config = function()
     local mlsp = require("mason-lspconfig")
@@ -49,6 +58,15 @@ return {
             return
           end
         end
+      end,
+    })
+
+    -- JDTLS Setup
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "java",
+      callback = function(args)
+        local jdtls = require("plugins.lsp.jdtls")
+        jdtls.setup()
       end,
     })
 

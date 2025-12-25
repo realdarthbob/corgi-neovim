@@ -15,12 +15,14 @@ M.move_next_start = {
   ["]m"] = "@function.outer",
   ["]a"] = "@parameter.outer",
   ["]c"] = "@class.outer",
+  ["]b"] = "@block.outer",
 }
 
 M.move_prev_start = {
   ["[m"] = "@function.outer",
   ["[a"] = "@parameter.outer",
   ["[c"] = "@class.outer",
+  ["[b"] = "@block.outer",
 }
 
 M.swap_next = {
