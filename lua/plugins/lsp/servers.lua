@@ -50,6 +50,26 @@ local servers = {
     },
   },
 
+  kotlin_language_server = {
+    settings = {
+      kotlin = {
+        compiler = {
+          jvm = {
+            target = "25",
+          },
+        },
+        linting = {
+          debounceTime = 250,
+        },
+        completion = {
+          snippets = {
+            enabled = true,
+          },
+        },
+      },
+    },
+  },
+
   gopls = {
     settings = {
       gopls = {

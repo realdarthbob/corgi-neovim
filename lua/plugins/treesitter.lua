@@ -19,6 +19,7 @@ return {
       "javascript",
       "python",
       "java",
+      "kotlin",
       "json",
       "toml",
       "yaml",
